@@ -10,7 +10,7 @@ def dist(x1, y1, x2, y2):
 def sort(x, y, l):
     dis = []
     for i in l:
-        dis.append[[dist(x, y, i.x, i.y), i.name, i.x, i.y, i.address, i.status]]
+        dis.append([dist(x, y, i.x, i.y), i.name, i.x, i.y, i.address, i.status])
     dis.sort()
     final = []
     for j in dis:
@@ -26,8 +26,8 @@ def sort(x, y, l):
 @csrf_exempt
 def handle(request):
     try:
-        x = request.POST.get('lati')
-        y = request.POST.get('longi')
+        x = float(request.POST.get('lati'))
+        y = float(request.POST.get('longi'))
         hospitals = hospital.objects.all()
         final = sort(x, y, hospitals)
         print('Data Received')
