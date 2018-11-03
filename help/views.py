@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from .models import Person
 
 
@@ -9,7 +9,7 @@ def help(request):
         locationy = request.POST.get('longi')
         Person.objects.create(num=num, locationx=locationx, locationy=locationy)
         print('Received data successfully')
-        return True
+        return HttpResponse('success')
     except:
         print('Did not receive data')
-        return False
+        return HttpResponse('error')
