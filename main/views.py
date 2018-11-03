@@ -35,3 +35,10 @@ def handle(request):
     except:
         print('Did not receive data')
         return JsonResponse({})
+
+def entry(request):
+    name = request.POST.get('name')
+    addr = request.POST.get('addr')
+    x = request.POST.get('lati')
+    y = request.POST.get('longi')
+
