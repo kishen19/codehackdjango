@@ -3,6 +3,7 @@ from .models import hospital
 import mpu
 from django.views.decorators.csrf import csrf_exempt
 
+
 def dist(x1, y1, x2, y2):
     return mpu.haversine_distance((x1, y1), (x2, y2))
 
@@ -23,6 +24,7 @@ def sort(x, y, l):
         final.append(d)
     return final
 
+
 @csrf_exempt
 def handle(request):
     try:
@@ -31,14 +33,23 @@ def handle(request):
         hospitals = hospital.objects.all()
         final = sort(x, y, hospitals)
         print('Data Received')
-        return JsonResponse({0:final})
+        return JsonResponse({0: final})
     except:
         print('Did not receive data')
         return JsonResponse({})
 
-def entry(request):
-    name = request.POST.get('name')
-    addr = request.POST.get('addr')
-    x = request.POST.get('lati')
-    y = request.POST.get('longi')
 
+@csrf_exempt
+def entry(request):
+    try:
+        name = request.POST.get('name')
+        addr = request.POST.get('addr')
+        x = request.POST.get('lati')
+        y = request.POST.get('longi')
+        a = hospital(name=name, x=x, y=y, address=addr)
+        a.save()
+        print('Data recorded successfully')
+        return True
+    except:
+        print('Did not receive data!')
+        return False
