@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from .models import hospital
 import mpu
 from django.views.decorators.csrf import csrf_exempt
@@ -55,10 +55,10 @@ def entry(request):
         a = hospital(name=name, x=x, y=y, address=addr)
         a.save()
         print('Data recorded successfully')
-        return True
+        return HttpResponse('ok')
     except:
         print('Did not receive data!')
-        return False
+        return HttpResponse('errors')
 
 @csrf_exempt
 def submit(request):
@@ -75,7 +75,8 @@ def submit(request):
         return index(request)
     else:
         return False
-'''
+
+@csrf_exempt
 def supply(request):
     size = len(hospital.objects.all())
     for i in range(1, size + 1):
@@ -89,4 +90,4 @@ def supply(request):
         p.save()
         return index(request)
     else:
-        return False'''
+        return False

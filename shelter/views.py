@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from .models import shelter
+from django.shortcuts import HttpResponse
 import mpu
 from django.views.decorators.csrf import csrf_exempt
 
@@ -49,7 +50,7 @@ def shel_entry(request):
         a = shelter(name=name, x=x, y=y, address=addr)
         a.save()
         print('Data recorded successfully')
-        return True
+        return HttpResponse('ok')
     except:
         print('Did not receive data!')
-        return False
+        return HttpResponse('errors')

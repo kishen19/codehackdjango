@@ -7,5 +7,5 @@ urlpatterns = [
     path('submit', views.submit),
     path('entry',views.entry),
     path('supply',views.supplyindex),
-   # path('supplied',views.supply),
+    path('supplied',views.supply),
 ]

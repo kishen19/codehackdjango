@@ -14,7 +14,7 @@ def handle(request):
     except:
         print('Did not receive data')
         return HttpResponse('errors')
-
+@csrf_exempt
 def get_points(request):
     final = []
     for i in floodpoint.objects.all():
