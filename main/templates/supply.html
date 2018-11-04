@@ -12,13 +12,11 @@
 <div class="container">
     <h3 style="color: darkorange"><center>Supply Request at Hospitals</center></h3>
     <div class="list-group">
-        <form method="POST" action="submit">
-            {% for i in hospitals %}
+        {% for i in hospitals %}
             <div class="list-group-item{% if i.supplyrequest < 20 %} list-group-item-success{% elif i.supplyrequest < 40 %} list-group-item-warning{% elif i.supplyrequest < 60 %} list-group-item-info{% elif i.supplyrequest < 80 %} list-group-item-danger{% else %} list-group-item-danger{% endif %}" style="width: 100%;" name="button{{i.id}}">
                 {{forloop.counter}}) {{i.name}}, {{i.address}}
             </div>
-            {% endfor %}
-        </form>
+        {% endfor %}
     </div>
 </div>
 </body>
