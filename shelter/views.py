@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from .models import hospital
+from .models import shelter
 import mpu
 from django.views.decorators.csrf import csrf_exempt
 
@@ -26,12 +26,12 @@ def sort(x, y, l):
 
 
 @csrf_exempt
-def handle(request):
+def handle_shel(request):
     try:
         x = float(request.POST.get('lati'))
         y = float(request.POST.get('longi'))
-        hospitals = hospital.objects.all()
-        final = sort(x, y, hospitals)
+        shelters = shelter.objects.all()
+        final = sort(x, y, shelters)
         print('Data Received')
         return JsonResponse({0: final})
     except:
@@ -40,13 +40,13 @@ def handle(request):
 
 
 @csrf_exempt
-def entry(request):
+def shel_entry(request):
     try:
         name = request.POST.get('name')
         addr = request.POST.get('addr')
         x = request.POST.get('lati')
         y = request.POST.get('longi')
-        a = hospital(name=name, x=x, y=y, address=addr)
+        a = shelter(name=name, x=x, y=y, address=addr)
         a.save()
         print('Data recorded successfully')
         return True
