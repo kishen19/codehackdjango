@@ -6,4 +6,6 @@ urlpatterns = [
     path('update', views.index),
     path('submit', views.submit),
     path('entry',views.entry),
+    path('supply',views.supplyindex),
+    path('supplied',views.supply),
 ]

@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from django.http import JsonResponse
 from .models import floodpoint
 from django.views.decorators.csrf import csrf_exempt
 
@@ -13,3 +14,12 @@ def handle(request):
     except:
         print('Did not receive data')
         return HttpResponse('errors')
+
+def get_points(request):
+    final = []
+    for i in floodpoint.objects.all():
+        d = {}
+        d['lati'] = i.localx
+        d['longi'] = i.localy
+        final.append(d)
+    return JsonResponse({0:final})

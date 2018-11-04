@@ -7,6 +7,9 @@ from django.views.decorators.csrf import csrf_exempt
 def index(request):
     return render(request,'update.html',{'hospitals':hospital.objects.order_by('name')})
 
+def supplyindex(request):
+    return render(request, 'supply.html',{'hospitals':hospital.objects.order_by('name')})
+
 def dist(x1, y1, x2, y2):
     return mpu.haversine_distance((x1, y1), (x2, y2))
 
