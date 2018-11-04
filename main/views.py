@@ -75,3 +75,18 @@ def submit(request):
         return index(request)
     else:
         return False
+'''
+def supply(request):
+    size = len(hospital.objects.all())
+    for i in range(1, size + 1):
+        ans = request.POST.get('button' + str(i))
+        if ans == '':
+            ans = i
+            break
+    if type(ans) == int:
+        p = hospital.objects.filter(id=i)[0]
+        p.status = not p.status
+        p.save()
+        return index(request)
+    else:
+        return False'''
