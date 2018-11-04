@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'help.apps.HelpConfig' ,
     'shelter.apps.ShelterConfig',
+    'flood.apps.FloodConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

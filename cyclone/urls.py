@@ -21,4 +21,5 @@ urlpatterns = [
     path('hospital/', include('main.urls')),
     path('help/', include('help.urls')),
     path('shelter/', include('shelter.urls')),
+    path('flood/', include('flood.urls')),
 ]
