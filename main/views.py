@@ -5,7 +5,7 @@ import mpu
 from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
-    return render(request,'update.html',{'hospitals':hospital.objects.all()})
+    return render(request,'update.html',{'hospitals':hospital.objects.order_by('name')})
 
 def dist(x1, y1, x2, y2):
     return mpu.haversine_distance((x1, y1), (x2, y2))
@@ -60,4 +60,15 @@ def entry(request):
 @csrf_exempt
 def submit(request):
     size = len(hospital.objects.all())
-    return index(request)
+    for i in range(1,size+1):
+        ans = request.POST.get('button'+str(i))
+        if ans=='':
+            ans = i
+            break
+    if type(ans)==int:
+        p= hospital.objects.filter(id=i)[0]
+        p.status = not p.status
+        p.save()
+        return index(request)
+    else:
+        return False
