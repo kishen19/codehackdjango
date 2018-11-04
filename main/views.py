@@ -1,8 +1,11 @@
 from django.http import JsonResponse
+from django.shortcuts import render
 from .models import hospital
 import mpu
 from django.views.decorators.csrf import csrf_exempt
 
+def index(request):
+    return render(request,'update.html',{'hospitals':hospital.objects.all()})
 
 def dist(x1, y1, x2, y2):
     return mpu.haversine_distance((x1, y1), (x2, y2))
@@ -53,3 +56,8 @@ def entry(request):
     except:
         print('Did not receive data!')
         return False
+
+@csrf_exempt
+def submit(request):
+    size = len(hospital.objects.all())
+    return index(request)

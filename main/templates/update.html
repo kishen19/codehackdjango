@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UPDATE</title>
+</head>
+<body>
+<form method="POST" action="submit">
+    {% for i in hospitals %}
+        <div>
+            {{i.name}}<br>
+            <button name="button{{i.id}}">{% if i.status %}Change to available{% else %}Change to full{% endif %}</button>
+        </div>
+    {% endfor %}
+</form>
+</body>
+</html>
