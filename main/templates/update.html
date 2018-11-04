@@ -10,13 +10,13 @@
 </head>
 <body>
 <div class="container">
-    <h3 style="color: darkorange"><center>List of Hospitals in working condition</center></h3>
+    <h3 style="color: darkorange"><center>List of Hospitals in working condition and Availability</center></h3>
     <div class="list-group">
         <form method="POST" action="submit">
             {% for i in hospitals %}
             <button class="list-group-item{% if not i.status %} list-group-item-info{% else %} list-group-item-danger{% endif %}" style="width: 100%;" name="button{{i.id}}">
                 {{forloop.counter}}) {{i.name}}, {{i.address}}
-                <span class="badge">{% if not i.status %}available{% else %}not available{% endif %}</span>
+                <span class="badge">{% if not i.status %}available{% else %}overloaded{% endif %}</span>
             </button>
             {% endfor %}
         </form>
