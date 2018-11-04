@@ -75,7 +75,7 @@ def submit(request):
         return index(request)
     else:
         return False
-
+'''
 @csrf_exempt
 def supply(request):
     size = len(hospital.objects.all())
@@ -90,4 +90,4 @@ def supply(request):
         p.save()
         return index(request)
     else:
-        return False
+        return False'''
